@@ -1,8 +1,12 @@
-# is_palindrome
-# simpler version: 
+# Function: is_palindrome
+# Description:
+#   check a string is palindrome
+# Notes:
+#   there is a simpler implentation such as this: 
 #   s = s.lower()
 #   return s = s[::-1]
-# it creates 2 temp arrays, not memory efficient.
+# but it creates 2 temp arrays, not memory efficient.
+# This version checks string in place, more memroy efficient.
 def is_palindrome(s):
     left = 0
     right = len(s) - 1
@@ -26,7 +30,7 @@ def is_palindrome(s):
     return True
 
 
-###Unit Level Test(ULT) for is_palindrome()
+# Unit Level Test(ULT) for is_palindrome()
 def test_is_palindrome():
     """
     Create testing strings
@@ -45,7 +49,10 @@ def test_is_palindrome():
     print(f"Final Test Result: {test_pass}!")
     return test_pass
 
-### Square the even elements in a list (in place) ####
+# Function: sqaure_even_item()
+# Description:
+#   Square the even elements in a given list.
+#   In place operation(without creating extra array)
 def square_even_item(data_list):
     for i in range(len(data_list)):
         if data_list[i] & 1 == 0:
