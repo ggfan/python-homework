@@ -52,7 +52,7 @@ def test_is_palindrome():
 # Function: sqaure_even_item()
 # Description:
 #   Square the even elements in a given list.
-#   In place operation(without creating extra array)
+#   In place operation(without creating extra arrays)
 def square_even_item(data_list):
     for i in range(len(data_list)):
         if data_list[i] & 1 == 0:
