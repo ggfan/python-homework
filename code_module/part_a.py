@@ -34,7 +34,7 @@ def is_palindrome(s):
 
     return True
 
-### Find the 2nd largest item in an list ####
+### Find the 2nd largest item in an list ###
 def find_2nd_largest(data_list):
     list_len = len(data_list)
     x = None
@@ -56,3 +56,28 @@ def find_2nd_largest(data_list):
             y = data_list[i]
     
     return y
+
+### Find the highest marks ###
+def find_highest_marks(students):
+    keys = []
+    highest_score = 0
+
+    for name in students:
+        if students[name] > highest_score:
+            keys = [name]
+            highest_score = students[name]
+        elif students[name] == highest_score:
+            keys.append(name)
+    
+    for k in keys:
+        print(f"{k} : {students[k]}.")
+    return keys
+
+### List to Dictionary ###
+def merge_lists_to_dict(list_a, list_b):
+    count = min(len(list_a), len(list_b))
+    dict = {}
+    for idx in range(count):
+        dict[list_a[idx]] = list_b[idx]
+    
+    return dict
