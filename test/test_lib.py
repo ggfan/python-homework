@@ -4,7 +4,9 @@ from code_module import \
     is_palindrome,find_2nd_largest, find_highest_marks, merge_lists_to_dict, \
     string_to_dict, filter_with_len, find_uniques,reverse_words_in_sentence, calculate_sum, \
     is_prime, swap_head_tail, get_median, calculator, \
-    find_the_missing_number, is_palindrome_string, get_element_frequency, find_item
+    find_the_missing_number, is_palindrome_string, get_element_frequency, find_item, \
+    calculate_factorial, count_vowels, get_sum_and_ave, is_in,\
+    get_fibonacci, divid_numbers, bubble_sort
 
 # A helper function to get calling function name.
 def print_test_result(result):
@@ -342,7 +344,103 @@ def test_find_item():
     print_test_result(test_pass)
     return test_pass
 
+def test_calculate_factorial():
+    tests = [5, 10, 0]
+    expected = [120, 3628800, 1]
+
+    test_pass = True
+    for t, r in zip(tests, expected):
+        result = calculate_factorial(t)
+        if result != r:
+            test_pass = False
+            print(f"Failed {t}, expected {r}, got {result}")
+    
+    print_test_result(test_pass)
+    return test_pass
+
+def test_count_vowels():
+    test_pass = True  #always True for this test
+    while True:
+        test = input("input a string ('quit' to exit): ")
+        if test.lower() == "quit":
+            return test_pass
+        
+        count = count_vowels(test)
+        print(f"\tthere are {count} in your string {test}.")
+
+    return True
+
+def test_get_sum_and_ave():
+    tests = [[5, 10, 0], []]
+    expected = [(15, 5), (0, 0)]
+
+    test_pass = True
+    for t, r in zip(tests, expected):
+        result = get_sum_and_ave(t)
+        if result != r:
+            test_pass = False
+            print(f"Failed {t}, expected {r}, got {result}")
+    
+    print_test_result(test_pass)
+    return test_pass
+
+def test_is_in():
+    tests = [([5, 10, 0], 5), ([5, 10, 0], 9)]
+    expected = [True, False]
+
+    test_pass = True
+    for t, e in zip(tests, expected):
+        result = is_in(t[0], t[1]) #access tuple with index
+        if result != e:
+            test_pass = False
+            print(f"Failed {t}, expected {e}, got {result}")
+    
+    print_test_result(test_pass)
+    return test_pass
+    
+def test_get_fibonacci():
+    tests = [0, 1, 5, 10]
+    expected = [[0], [0, 1], 
+                [0, 1, 1, 2, 3, 5],
+                [0,1,1,2,3,5,8,13,21,34,55],
+                ]
+
+    test_pass = True
+    for t, e in zip(tests, expected):
+        result = get_fibonacci(t)
+        if result != e:
+            test_pass = False
+            print(f"Failed {t}, expected {e}, got {result}")
+    
+    print_test_result(test_pass)
+    return test_pass
+
+def test_divid_numbers():
+    while True:
+        a, b = map(int, input("Enter two integers separated by space: ").split())
+        print("You entered:", a, "and", b)
+        result = divid_numbers(a, b)
+        print(f"\t\t{a} / {b} = {result}")
+        quit = input("type 'quit' to stop, enter to continue: ")
+        if quit.lower() == 'quit':
+            break
+    return True
+
+def test_bubble_sort():
+    tests = [[0, 1, 5, 10], [5,4,3,2,1], [3], []]
+    expected = [[0, 1, 5, 10], [1,2,3,4,5], [3], []]
+
+    test_pass = True
+    for t, e in zip(tests, expected):
+        result = bubble_sort(t)
+        if result != e:
+            test_pass = False
+            print(f"Failed {t}, expected {e}, got {result}")
+    
+    print_test_result(test_pass)
+    return test_pass
+
 # main test entry.
 def run_test():
-    return test_find_item()
+    return test_bubble_sort()
 
