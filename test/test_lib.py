@@ -3,7 +3,8 @@ import inspect
 from code_module import \
     is_palindrome,find_2nd_largest, find_highest_marks, merge_lists_to_dict, \
     string_to_dict, filter_with_len, find_uniques,reverse_words_in_sentence, calculate_sum, \
-    is_prime, swap_head_tail, get_median, calculator
+    is_prime, swap_head_tail, get_median, calculator, \
+    find_the_missing_number, is_palindrome_string, get_element_frequency, find_item
 
 # A helper function to get calling function name.
 def print_test_result(result):
@@ -267,7 +268,81 @@ def test_calculator():
     calculator()
     return True
 
+############### Part_d ##################
+
+def test_find_the_missing_number():
+    tests = [
+        [1,2,3,5,6,7],
+        [1],
+        [],
+        [2,3,4,5,6,7,8]
+        ]
+    expected = [4,2,1,1]
+    test_pass = True
+
+    for idx in range(len(tests)):
+        result = find_the_missing_number(tests[idx])
+        if result != expected[idx]:
+            test_pass = False
+            print(f"Failed {tests[idx]}, expected {expected[idx]}, got {result}")
+    
+    print_test_result(test_pass)
+    return test_pass
+
+def test_is_palindrome_string():
+    tests = ["carac", "1", "", "NotAPalindrome", "detartrated", "wasitacaroracatisaw" ]
+    expected = [True, True, True, False, True, True]
+    test_pass = True
+
+    for idx in range(len(tests)):
+        result = is_palindrome_string(tests[idx])
+        if result != expected[idx]:
+            test_pass = False
+            print(f"Failed {tests[idx]}, expected {expected[idx]}, got {result}")
+    
+    print_test_result(test_pass)
+    return test_pass
+
+def test_get_element_frequency():
+    tests = [
+        [1,2,4,3,5, 1, 4, 1],
+        []
+    ]
+    expected = [
+        {1:3, 2:1, 3:1, 4:2, 5:1},
+        {}
+    ]
+    test_pass = True
+
+    for idx in range(len(tests)):
+        result = get_element_frequency(tests[idx])
+        if result != expected[idx]:
+            test_pass = False
+            print(f"Failed {tests[idx]}, expected {expected[idx]}, got {result}")
+    
+    print_test_result(test_pass)
+    return test_pass
+
+def test_find_item():
+    tests = [
+        ([1,2,4,3,5, 1, 4, 1], 2),
+        (["this", "is", "a", "string"], "good")
+    ]
+    expected = [1, -1]
+
+    test_pass = True
+    idx = 0
+    for data, item in tests:
+        result = find_item(data, item)
+        if result != expected[idx]:
+            test_pass = False
+            print(f"Failed {tests[idx]}, expected {expected[idx]}, got {result}")
+        idx += 1
+    
+    print_test_result(test_pass)
+    return test_pass
+
 # main test entry.
 def run_test():
-    return test_calculator()
+    return test_find_item()
 
