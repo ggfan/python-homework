@@ -2,7 +2,8 @@
 import inspect
 from code_module import \
     is_palindrome,find_2nd_largest, find_highest_marks, merge_lists_to_dict, \
-    string_to_dict, filter_with_len, find_uniques,reverse_words_in_sentence, calculate_sum
+    string_to_dict, filter_with_len, find_uniques,reverse_words_in_sentence, calculate_sum, \
+    is_prime, swap_head_tail, get_median, calculator
 
 # A helper function to get calling function name.
 def print_test_result(result):
@@ -208,6 +209,65 @@ def test_calculate_sum():
     return test_pass
 
 
+############### Part_b ##################
+def test_is_prime():
+    tests =    [0, 1, 2, 3, 7, 9, 99]
+    expected = [False, False, True, True, True, False, False]
+    test_pass = True
+
+    for idx in range(len(tests)):
+        result = is_prime(tests[idx])
+        if result != expected[idx]:
+            test_pass = False
+            print(f"Failed {tests[idx]}, expected {expected[idx]}, got {result}")
+    
+    print_test_result(test_pass)
+    return test_pass
+
+def test_swap_head_tail():
+    tests = [
+        [0, 1, 2, 3, 7, 9, 99],
+        ['a', 'b', 'c', 'd', 'e', 'f'],
+        [] ]
+    expected = [
+        [99, 1, 2, 3, 7, 9, 0],
+        ['f', 'b', 'c', 'd', 'e', 'a'],
+        []]
+    test_pass = True
+
+    for idx in range(len(tests)):
+        result = swap_head_tail(tests[idx])
+        if result != expected[idx]:
+            test_pass = False
+            print(f"Failed {tests[idx]}, expected {expected[idx]}, got {result}")
+    
+    print_test_result(test_pass)
+    return test_pass
+
+def test_get_media():
+    tests = [
+        [0, 1, 2, 3, 7, 9, 99],
+        [20, 40, 80, 100, 120, 60],
+        [],
+        [5]
+        ]
+    expected = [3, 70, None, 5]
+    test_pass = True
+
+    for idx in range(len(tests)):
+        result = get_median(tests[idx])
+        if result != expected[idx]:
+            test_pass = False
+            print(f"Failed {tests[idx]}, expected {expected[idx]}, got {result}")
+    
+    print_test_result(test_pass)
+    return test_pass
+
+def test_calculator():
+    calculator()
+    return True
+
 # main test entry.
 def run_test():
-    return test_calculate_sum()
+    return test_calculator()
+
