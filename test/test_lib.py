@@ -1,6 +1,8 @@
 # test/test_lib.py
 import inspect
-from code_module import is_palindrome,find_2nd_largest, find_highest_marks, merge_lists_to_dict
+from code_module import \
+    is_palindrome,find_2nd_largest, find_highest_marks, merge_lists_to_dict, \
+    string_to_dict, filter_with_len, find_uniques,reverse_words_in_sentence, calculate_sum
 
 # A helper function to get calling function name.
 def print_test_result(result):
@@ -93,6 +95,119 @@ def test_merge_lists_to_dict():
     print_test_result(test_pass)
     return test_pass
 
+############### Part_b ##################
+def test_string_to_dict():
+    tests = ["abcde", "aabddc", "", "yyyyyy"]
+    expected = [
+        {'a': 1, 'b' : 1, 'c':1, 'd' : 1, 'e':1},
+        {'a':2, 'b': 1, 'c': 1, 'd':2},
+        {},
+        {'y': 6}
+    ]
+    test_pass = True
+    for idx in range(len(tests)):
+        result = string_to_dict(tests[idx])
+        if result != expected[idx]:
+            test_pass = False
+            print(f"Failed {tests[idx]}, expected {expected[idx]}, got {result}")
+
+    print_test_result(test_pass)
+    return test_pass
+
+def test_filter_with_len():
+    len_req = 5
+    tests = [
+        ["a", "b", "c", "d", "e", "excellent"],
+        ["123", "345"],
+        ["LongWords", "SuperLongWords", "pneumonoultramicroscopicsilicovolcanoconiosis"],
+        []
+    ]
+    expected = [
+         ["a", "b", "c", "d", "e"],
+         ["123", "345"],
+         [],
+         []
+    ]
+
+    test_pass = True
+    for idx in range(len(tests)):
+        result = filter_with_len(tests[idx], len_req)
+        result.sort()
+        expected[idx].sort()
+        if expected[idx] != result:
+            test_pass = False
+            print(f"Failed {tests[idx]}, expected {expected[idx]}, got {result}")
+    
+    print_test_result(test_pass)
+    return test_pass
+
+def test_find_uniques():
+    tests = [
+        [1, 2, 3, 4, 5, 8, 100, 3],
+        ["this", "is", "a", "unique", "sentence"],
+        ["dup", "dup", "dup"],
+        []
+    ]
+    expected = [
+        [1, 2, 3, 4, 5, 8, 100],
+        ["this", "is", "a", "unique", "sentence"],
+        ["dup"],
+        []
+    ]
+    test_pass = True
+    for idx in range(len(tests)):
+        result = find_uniques(tests[idx])
+        if expected[idx] != result:
+            test_pass = False
+            print(f"Failed {tests[idx]}, expected {expected[idx]}, got {result}")
+    
+    print_test_result(test_pass)
+    return test_pass
+
+def test_reverse_words_in_sentence():
+    tests = [
+        "This is the 1st Sentence.",
+        "Good boy!",
+        "aha",
+        "."
+        ""
+    ]
+    expected = [
+        "sihT si eht ts1 ecnetneS.",
+        "dooG yob!",
+        "aha",
+        ".",
+        ""
+    ]
+    test_pass = True
+    for idx in range(len(tests)):
+        result = reverse_words_in_sentence(tests[idx])
+        if expected[idx] != result:
+            test_pass = False
+            print(f"Failed {tests[idx]}, expected {expected[idx]}, got {result}")
+    
+    print_test_result(test_pass)
+    return test_pass
+
+def test_calculate_sum():
+    tests = [
+        "1234b5g67",
+        "abc1d9",
+        "100",
+        ""
+    ]
+    expected = [28, 10, 1, 0]
+    test_pass = True
+    for idx in range(len(tests)):
+        result = calculate_sum(tests[idx])
+        if expected[idx] != result:
+            test_pass = False
+            print(f"Failed {tests[idx]}, expected {expected[idx]}, got {result}")
+    
+    print_test_result(test_pass)
+    return test_pass
+
+
 # main test entry.
 def run_test():
-    return test_merge_lists_to_dict()
+    return test_calculate_sum()
